@@ -20,6 +20,17 @@ const port = process.env.PORT || 3000;
 // ==========================================
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 念のためルートパスに対する明示的な処理と、万が一ファイルがない場合のエラー表示を追加
+app.get('/', (req, res) => {
+    const indexPath = path.join(__dirname, 'public', 'index.html');
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.status(404).send(`画面ファイルが見つかりません！現在の場所: ${__dirname} / ${fs.readdirSync(__dirname).join(', ')}`);
+    }
+});
+
 // Multer: アップロードされたファイルをメモリ上で保持
 const upload = multer({ storage: multer.memoryStorage() });
 
