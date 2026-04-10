@@ -1,0 +1,5 @@
+node_modules/
+result.csv
+.DS_Store
+*.csv
+!sample-input.csv

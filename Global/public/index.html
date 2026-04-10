@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA加盟店 判定ツール</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <header>
+            <h1>SA加盟店 判定ツール✨</h1>
+            <p class="subtitle">あなたの大切な時間を節約するための、強力な味方です！<br>お手元のCSVファイルをドロップするだけで、URLを一気に自動チェックします。</p>
+        </header>
+
+        <main>
+            <div id="drop-zone" class="glass-panel drop-zone">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                </div>
+                <h2>ここにCSVファイルをドロップ</h2>
+                <p>または</p>
+                <span class="btn">ファイルを選択</span>
+                <input type="file" id="csv-file" accept=".csv" style="display: none;">
+            </div>
+
+            <div id="loading" class="glass-panel loading-zone hidden">
+                <div class="spinner"></div>
+                <h3>判定処理を実行中です...</h3>
+                <p>ブラウザの裏側で一生懸命チェックしています！<br>少しだけお待ちくださいね☕️</p>
+            </div>
+
+            <div id="result" class="glass-panel result-zone hidden">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h2>処理が完了しました！</h2>
+                <p>結果がまとまったCSVファイルが自動的にダウンロードされます。</p>
+                <button id="reset-btn" class="btn outline">もう一度チェックする</button>
+            </div>
+        </main>
+        
+        <footer>
+            <p>日本一親切なAIがサポートしています🐈</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
