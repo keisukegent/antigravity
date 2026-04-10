@@ -8,11 +8,17 @@ const resetBtn = document.getElementById('reset-btn');
 // イベントリスナーの登録
 // ==========================================
 
-// クリックでファイル選択を開く
+// LabelやInput自体がクリックされた時は標準動作を優先して二重発火を防ぐ
 dropZone.addEventListener('click', (e) => {
-    // Spanボタン以外の場所でもクリック判定されるため、まずは選択状態をクリア
-    fileInput.value = '';
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') {
+        return;
+    }
     fileInput.click();
+});
+
+// 連続で同じファイルを選択しても反応するように、クリックされた瞬間に値をクリアする
+fileInput.addEventListener('click', () => {
+    fileInput.value = '';
 });
 
 // ファイルが選択された時
