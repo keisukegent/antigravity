@@ -1,14 +1,17 @@
-# Playwrightの公式イメージを使用 (必要なブラウザ環境がすべて含まれています)
-FROM mcr.microsoft.com/playwright:v1.42.1-jammy
+# 安定したNode.js環境を使用
+FROM node:20-bookworm
 
 # 作業ディレクトリの設定
 WORKDIR /app
 
-# パッケージファイルのコピーとインストール
+# 先にパッケージ群をコピーしてインストール
 COPY package*.json ./
 RUN npm install
 
-# アプリケーションのすべてのファイルをコピー
+# Playwrightと、それに必要なOSの部品を一括インストール
+RUN npx playwright install --with-deps chromium
+
+# アプリケーション全体をコピー
 COPY . .
 
 # アプリケーションの起動
