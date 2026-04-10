@@ -150,7 +150,16 @@ app.post('/api/check', upload.single('csvFile'), async (req, res) => {
 
     let browser;
     try {
-        browser = await chromium.launch({ headless: true });
+        browser = await chromium.launch({ 
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--single-process',
+                '--no-zygote'
+            ]
+        });
         const limit = pLimit(CONCURRENCY_LIMIT);
         
         const tasks = records.map(row => limit(() => processRow(browser, row)));
