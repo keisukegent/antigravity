@@ -211,7 +211,7 @@ app.post('/api/check', upload.single('csvFile'), async (req, res) => {
 // ==========================================
 // サーバー起動
 // ==========================================
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`サーバーを起動しました🚀`);
   console.log(`ブラウザで http://localhost:${port} を開いてください。`);
 });
